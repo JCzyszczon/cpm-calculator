@@ -210,8 +210,8 @@ const TableComponent = ({ closeRequest, howMany }) => {
               <span className="btn__bg__layer btn__bg__layer-second"></span>
               <span className="btn__bg__layer btn__bg__layer-third"></span>
             </div>
-            <span className="btn__text-out">Generate</span>
-            <span className="btn__text-in">Generate</span>
+            <span className="btn__text-out">Solve</span>
+            <span className="btn__text-in">Solve</span>
           </button>
         </section>
         </form>

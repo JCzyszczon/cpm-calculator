@@ -213,7 +213,7 @@ body {
   margin: auto;
   font-weight: 700;
   font-size: 1rem;
-  z-index: 10;
+  z-index: 0;
 }
 
 .btn__text-in {

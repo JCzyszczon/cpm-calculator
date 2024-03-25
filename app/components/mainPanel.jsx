@@ -28,7 +28,15 @@ export default function MainPanel() {
         <>
             <section className="w-1/2 min-h-screen flex flex-col gap-5 justify-center items-center">
                 <p>Tutaj coś będzie..</p>
-                <button onClick={clickButton} className="px-10 py-2 bg-[#fff] text-[#000]">Trigger</button>
+                <button onClick={clickButton} title='Open Modal' className="btn">
+                    <div className="btn__bg">
+                        <span className="btn__bg__layer btn__bg__layer-first"></span>
+                        <span className="btn__bg__layer btn__bg__layer-second"></span>
+                        <span className="btn__bg__layer btn__bg__layer-third"></span>
+                    </div>
+                    <span className="btn__text-out">Generate</span>
+                    <span className="btn__text-in">Generate</span>
+                </button>
             </section>
             <section className="w-1/2 min-h-screen flex justify-center items-center">
                 <p className="text-themeColorY">Tutaj też coś będzie..</p>
