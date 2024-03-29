@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import TableForm from "./tableForm";
 import { AnimatePresence } from "framer-motion";
+import Button from "./buttonStandard";
 
 
 
@@ -28,15 +29,7 @@ export default function MainPanel() {
         <>
             <section className="w-1/2 min-h-screen flex flex-col gap-5 justify-center items-center">
                 <p>Tutaj coś będzie..</p>
-                <button onClick={clickButton} title='Open Modal' className="btn">
-                    <div className="btn__bg">
-                        <span className="btn__bg__layer btn__bg__layer-first"></span>
-                        <span className="btn__bg__layer btn__bg__layer-second"></span>
-                        <span className="btn__bg__layer btn__bg__layer-third"></span>
-                    </div>
-                    <span className="btn__text-out">Generate</span>
-                    <span className="btn__text-in">Generate</span>
-                </button>
+                <Button buttonType={1} buttonText="Generate" title="Open Modal" onClick={clickButton}/>
             </section>
             <section className="w-1/2 min-h-screen flex justify-center items-center">
                 <p className="text-themeColorY">Tutaj też coś będzie..</p>

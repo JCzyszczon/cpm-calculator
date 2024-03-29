@@ -13,6 +13,38 @@
   --themeColorP: #A374FF;
 }
 
+/* custom scrollbar */
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #1d1d1f00;
+  border-radius: 0px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--themeColorP);
+  border-radius: 14px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  cursor: grab;
+}
+
+@media (max-width: 1024px) {
+  *::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #666;
+    border-radius: 14px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -221,7 +253,7 @@ body {
   transform: translateY(33.333333%);
 }
 
-.btn__bg {
+.btn .btn__bg {
   height: inherit;
   width: inherit;
   transition: scale 1.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -272,7 +304,7 @@ body {
   color: var(--textColor);
 }
 
-.btn__bg2 {
+.btn2 .btn__bg {
   height: inherit;
   width: inherit;
   transition: scale 1.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -282,11 +314,11 @@ body {
   overflow: hidden;
 }
 
-.btn__bg__layer-third2 {
+.btn2 .btn__bg__layer-third {
   background-color: var(--backgroundColor);
 }
 
-.btn2:hover .btn__bg2 {
+.btn2:hover .btn__bg {
   scale: 0.94;
 }
 
@@ -302,7 +334,7 @@ body {
   opacity: 1;
 }
 
-.btn2:hover .btn__bg__layer-first, .btn2:hover .btn__bg__layer-second, .btn2:hover .btn__bg__layer-third2 {
+.btn2:hover .btn__bg__layer-first, .btn2:hover .btn__bg__layer-second, .btn2:hover .btn__bg__layer-third {
   border-radius: 60% 60% 0 0;
   transform: translateY(1rem);
 }
@@ -315,7 +347,7 @@ body {
   transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 300ms, border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 470ms;
 }
 
-.btn2:hover .btn__bg__layer-third2 {
+.btn2:hover .btn__bg__layer-third {
   transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 380ms, border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 670ms;
 }
 
