@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import TableForm from "./tableForm";
+import GenerateTableModal from "./generateTableModal";
 import { AnimatePresence } from "framer-motion";
 import Button from "./buttonStandard";
 
@@ -28,7 +28,9 @@ export default function MainPanel() {
     return (
         <>
             <section className="w-1/2 min-h-screen flex flex-col gap-5 justify-center items-center">
-                <p>Tutaj coś będzie..</p>
+                <form>
+                    <input type="number" />
+                </form>
                 <Button buttonType={1} buttonText="Generate" title="Open Modal" onClick={clickButton}/>
             </section>
             <section className="w-1/2 min-h-screen flex justify-center items-center">
@@ -36,7 +38,7 @@ export default function MainPanel() {
             </section>
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isModalOpen &&   
-                <TableForm closeModal={() => setIsModalOpen(false)}/>
+                <GenerateTableModal closeModal={() => setIsModalOpen(false)}/>
             }
             </AnimatePresence>
         </>

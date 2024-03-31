@@ -1,52 +1,43 @@
 import { useEffect, useState } from 'react';
 import InstructionsModal from './instructionsModal';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from './buttonStandard';
 import ButtonCircle from './buttonCircle';
+import { useForm, Controller } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Error from './errorComponent';
 
 const animatedComponents = makeAnimated();
 
 const TableComponent = ({ closeRequest, howMany }) => {
 
-  const [data, setData] = useState(Array.from({ length: howMany}, () => ({ col1: '', col2: [], col3: '' })));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const [selectedOptions, setSelectedOptions] = useState(Array.from({ length: howMany }, () => []));
+  const [errorsNorm, setErrorsNorm] = useState(Array.from({ length: howMany }, () => ""));
+  const [globalError, setGlobalError] = useState("");
 
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"];
 
   const options = letters.slice(0, howMany).map(letter => ({ value: letter, label: letter }));
   options.unshift({value: "-", label: "-"});
 
-  const handleChange = (e, rowIndex, colIndex) => {
-    if(colIndex == 1) {
-      const values = e.map(obj => obj.value);
-      setData(prevData => {
-        const newData = [...prevData];
-        newData[rowIndex].col2 = [];
-        newData[rowIndex].col2.push(...values);
-        return newData;
-      });
-    } else {
-      const { value } = e.target;
-      setData(prevData => {
-        const newData = [...prevData];
-        newData[rowIndex][`col${colIndex + 1}`] = value;
-        return newData;
-      });
-    }
-  };
+  const schema = yup.object().shape({
+    activities: yup.array().of(
+      yup.string().required("Activity is required")
+    ),
+    durations: yup.array().of(
+      yup.number().min(0.01, "Duration must be a positive number.").max(1000, "Duration must be less than a 1000.").required("Duration is required.").typeError("Duration must be a number.")
+    )
+  });
 
-  useEffect(() => {
-    if (howMany > 0) {
-      const newData = data.map((item, index) => ({
-        ...item,
-        col1: index < howMany ? letters[index] : item.col1
-      }));
-      setData(newData);
-    }
-  }, [howMany]);
+  const { handleSubmit, control, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+  });
 
   useEffect(() => {
     function handleResize() {
@@ -61,12 +52,56 @@ const TableComponent = ({ closeRequest, howMany }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleExport = (e) => {
-    e.preventDefault();
+  const handleExport = (formData) => {
+    const emptySelects = selectedOptions.some(options => options.length === 0);
 
-    const jsonData = JSON.stringify(data);
-    //console.log(jsonData);
-    console.log(data);
+    if (emptySelects) {
+      const newErrors = selectedOptions.map(options => (options.length === 0 ? "Dependency is required." : ""));
+      setErrorsNorm(newErrors);
+      return;
+    }
+
+    const activityValues = formData.activities;
+    const hasDuplicates = selectedOptions.some((options, index) => options.includes(activityValues[index]));
+
+    if (hasDuplicates) {
+      const newErrors = selectedOptions.map((options, index) => (options.includes(activityValues[index]) ? "Dependency cannot be the same as activity." : ""));
+      setErrorsNorm(newErrors);
+      return;
+    }
+
+    const hasEmptyValue = selectedOptions.some(options => options.includes("-"));
+    if (!hasEmptyValue) {
+      setGlobalError("At least one row must contain '-' value.");
+      return;
+    } else {
+      setGlobalError("");
+    }
+
+    const invalidOptions = selectedOptions.map((options, index) => {
+      if (options.includes("-") && options.length > 1) {
+        return index;
+      }
+      return null;
+    }).filter(index => index !== null);
+
+    if (invalidOptions.length > 0) {
+      const newErrors = Array.from({ length: howMany }, () => "");
+      invalidOptions.forEach(index => {
+        newErrors[index] = "After selecting '-' You cannot add more dependencies.";
+      });
+      setErrorsNorm(newErrors);
+      return;
+    }
+
+    const finalData = formData.activities.map((activity, index) => {
+      return {
+        activity: activity,
+        dependencies: selectedOptions[index],
+        duration: formData.durations[index],
+      };
+    });
+    console.log(finalData);
   };
 
   const handleClose = () => {
@@ -134,7 +169,30 @@ const TableComponent = ({ closeRequest, howMany }) => {
         backgroundColor: "#ffd074",
         color: "#1e1e1f"
       }
-    })
+    }),
+    menu: (base) => ({
+      ...base,
+      backgroundColor: "#2f2f2f",
+      border: "1px solid #666",
+      overflow: "hidden" ,
+      zIndex: 100000000000000,
+    }),
+    indicatorsContainer: (base) => ({
+      ...base,
+      display: 'flex',
+      alignItems: 'start',
+      justifyContent: 'center',
+    }),
+    clearIndicator: (base) => ({
+      ...base,
+      position: "sticky",
+      top: '0%',
+    }),
+    dropdownIndicator: (base) => ({
+      ...base,
+      position: "sticky",
+      top: '0%',
+    }),
   }
 
   const customTheme = (theme) => ({
@@ -156,14 +214,14 @@ const TableComponent = ({ closeRequest, howMany }) => {
   return (
     <>
       <section className='w-full h-full md:px-12 sm:px-2 px-1 md:py-14 py-10 gap-11 flex flex-col justify-start items-center relative'>
-        <span className='fixed lg:right-10 right-4 top-4 z-[900]'>
+        <span className='fixed lg:right-10 right-4 top-4 z-[1002]'>
           <ButtonCircle buttonType={1} title="Open Tooltip" onClick={clickButton}/>
         </span>
         <section className='w-full h-auto flex flex-col justify-center items-center md:gap-3 gap-2'>
           <h2 className='responsive_text font-extrabold tracking-tighter text-center'>Project Information</h2>
           <span className='lg:w-[25%] w-[34%] h-[2px] rounded-full gradient2'></span>
         </section>
-        <form id='tableForm' className='w-full flex flex-col justify-center items-center gap-11' onSubmit={handleExport}>
+        <form id='tableForm' className='w-full flex flex-col justify-center items-center gap-11 relative' onSubmit={handleSubmit(handleExport)}>
           <table className='navbar z-[1000]'>
             <thead>
               <tr className='uppercase font-extrabold sm:text-xs text-[10px] tracking-widest'>
@@ -172,37 +230,81 @@ const TableComponent = ({ closeRequest, howMany }) => {
                 <th className='text-themeColorY pb-3'>Duration</th>
               </tr>
             </thead>
-            <tbody className='w-full h-auto z-[1001]'>
-              {data.map((row, rowIndex) => (
-                <tr key={rowIndex} className='w-full md:text-base text-sm group/main'>
+              <tbody className='w-full h-auto'>
+              {[...Array(howMany)].map((_, index) => (
+                <tr key={index} className='w-full md:text-base text-sm group/main'>
                   <td className='w-1/5 relative'>
-                    <input
-                      type="text"
-                      value={letters[rowIndex]}
-                      disabled
-                      className='w-full disabled:cursor-text text-center navbar p-2 border-2 border-borderColor group-focus-within/main:border-l-themeColorT outline-none focus:border-b-themeColorY focus:border-b-2 duration-300'
+                    <Controller
+                      name={`activities[${index}]`}
+                      control={control}
+                      defaultValue={String.fromCharCode(65 + index)}
+                      render={({ field }) => (
+                        <input
+                          type="text"
+                          value={field.value}
+                          disabled
+                          className='w-full disabled:cursor-text text-center navbar p-2 border-2 border-borderColor group-focus-within/main:border-l-themeColorT outline-none focus:border-b-themeColorY focus:border-b-2 duration-300'
+                        />
+                      )}
                     />
                     <span className='absolute left-1/2 top-1/2 -translate-x-1/2 rounded-full -translate-y-1/2 w-4 h-4 blur-3xl bg-themeColorT z-[-1] opacity-0 group-focus-within/main:opacity-100 duration-300'></span>
                   </td>
-                  <td className='w-2/5 relative group/second'>
-                      <Select styles={colorStyles} theme={customTheme} closeMenuOnSelect={true} required components={animatedComponents} isMulti options={options} onChange={e => handleChange(e, rowIndex, 1)}/>
-                  </td>
-                  <td className='w-2/5'>
-                    <input
-                      type="number"
-                      step={0.01}
-                      min={0}
-                      max={1000}
-                      required
-                      onChange={e => handleChange(e, rowIndex, 2)}
-                      className='w-full text-center navbar p-2 border-2 border-borderColor outline-none focus:border-b-themeColorY focus:border-b-2 duration-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                  <td className="w-2/5 relative">
+                    <Select
+                      styles={colorStyles}
+                      theme={customTheme}
+                      closeMenuOnSelect={true}
+                      components={animatedComponents}
+                      isMulti
+                      options={options}
+                      onChange={(selected) => {
+                        const selectedValues = selected.map(option => option.value);
+                        setSelectedOptions(prevState => {
+                          const newSelectedOptions = [...prevState];
+                          newSelectedOptions[index] = selectedValues;
+                          return newSelectedOptions;
+                        });
+                        setErrorsNorm(prevErrors => {
+                          const newErrors = [...prevErrors];
+                          newErrors[index] = "";
+                          return newErrors;
+                        });
+                      }}
                     />
+                    <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+                    {errorsNorm[index] && (
+                      <Error errorText={errorsNorm[index]}/>
+                    )}
+                    </AnimatePresence>
+                  </td>
+                  <td className='w-2/5 relative'>
+                    <Controller
+                      name={`durations[${index}]`}
+                      control={control}
+                      render={({ field }) => (
+                        <input
+                          type="number"
+                          {...field}
+                          className='w-full text-center navbar p-2 border-2 border-borderColor outline-none focus:border-b-themeColorY focus:border-b-2 duration-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                        />
+                      )}
+                    />
+                    <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+                    {errors.durations && errors.durations[index] && (
+                      <Error errorText={errors.durations[index].message} errorColor="#ffd074"/>
+                    )}
+                    </AnimatePresence>
                   </td>
                 </tr>
               ))}
             </tbody>
             <span className='w-48 h-48 gradient2 rounded-full blur-3xl fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]'></span>
           </table>
+          <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+          {globalError && (
+            <Error errorText={globalError} errorColor="#17f1d1"/>
+          )}
+          </AnimatePresence>
         </form>
         <section className='w-full flex gap-5 z-0 sm:flex-row flex-col justify-center items-center px-4 py-0'>
           <Button buttonText="Cancel" buttonType={2} title="Cancel" onClick={handleClose}/>
