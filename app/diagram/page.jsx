@@ -2,7 +2,7 @@
 import { useSearchParams } from 'next/navigation'
 import DiagramPanel from '../components/diagramPanel';
 import LoadingElement from '../components/loadingElement';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 const DiagramPage = () => {
@@ -20,13 +20,15 @@ const DiagramPage = () => {
   }, [data])
   
   return (
-    <section className='w-full min-h-screen flex justify-center items-center'>
-      { data ? (
-        <DiagramPanel diagramData={finalData}/>
-      ) : (
-        <LoadingElement/>
-      )}
-    </section>
+    <Suspense fallback={<div>Loading...</div>}>
+      <section className='w-full min-h-screen flex justify-center items-center'>
+        { data ? (
+          <DiagramPanel diagramData={finalData}/>
+        ) : (
+          <LoadingElement/>
+        )}
+      </section>
+    </Suspense>
   );
 };
   
