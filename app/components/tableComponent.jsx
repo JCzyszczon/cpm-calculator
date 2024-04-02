@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useState } from 'react';
-import InstructionsModal from './instructionsModal';
 import { AnimatePresence } from 'framer-motion';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';

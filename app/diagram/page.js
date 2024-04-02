@@ -14,9 +14,13 @@ export default function Home() {
   const finalData = JSON.parse(data);
 
   useEffect(() => {
-    if(!data) {
-      router.push('/page-not-found');
-    }
+    const delay = setTimeout(() => {
+      if(!data) {
+        router.push('/page-not-found');
+      }
+    }, 2000);
+
+    return () => clearTimeout(delay);
   }, [data]);
 
   return (
