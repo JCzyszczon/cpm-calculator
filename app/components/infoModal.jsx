@@ -42,7 +42,7 @@ export default function InfoModal({ closeModal }) {
 
     return (
         <section className="w-screen min-h-[100vh] max-h-[100px] z-[1100] fixed left-0 top-0 right-0 overflow-x-hidden overflow-y-scroll bg-[#11111199]">
-            <section onClick={handleOutsideClick} className='w-screen min-h-[100vh] z-[1101] flex flex-col justify-center items-center lg:p-14 md:p-8 p-2 pb-16'>
+            <section onClick={handleOutsideClick} className='w-screen min-h-[100vh] z-[1101] flex flex-col justify-center items-center lg:p-14 md:p-8 p-2 pb-20'>
                 <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.4, type: "tween"}} exit={{opacity: 0}} ref={modalRef} className='w-full max-w-[940px] h-full flex flex-col justify-center relative items-center bg-modalColor rounded-lg border border-borderColor md:px-12 px-2 md:py-14 py-10 md:gap-8 gap-5'>
                     <IoMdClose title='Close Tooltip' onClick={handleClose} className='absolute right-3 top-3 text-xl cursor-pointer'/>
                     <section className='w-full h-auto flex flex-col justify-center items-center md:gap-3 gap-2'>
