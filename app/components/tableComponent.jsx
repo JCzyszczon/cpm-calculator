@@ -115,7 +115,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
       };
     });
 
-    //router.push(`/diagram?data=${JSON.stringify(finalData)}`);
+    router.push(`/diagram?data=${JSON.stringify(finalData)}`);
   };
 
   const handleClose = () => {
