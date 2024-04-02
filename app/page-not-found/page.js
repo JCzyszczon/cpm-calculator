@@ -2,7 +2,7 @@ import React from "react";
 import NotFound404 from "../components/notFound";
 
 export const metadata = {
-  title: '404 Error',
+  title: '404 - CPM Calculator',
 }
 
 export default function Home() {

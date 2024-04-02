@@ -1,10 +1,7 @@
 import { Suspense } from "react";
 
 export const metadata = {
-    title: 'Diagram',
-    alternates: {
-      //canonical: 'https://weather.jczyszczon.pl/settings',
-    },
+    title: 'Diagram - CPM Calculator',
 }
 
 export default function RootLayout({ children }) {
