@@ -57,9 +57,9 @@ export default function GenerateTableModal({ closeModal }) {
                 <motion.section initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.3, delay: 0.25}} ref={modalRef} className='z-[1000] w-full max-w-[1000px] h-full flex justify-center items-start bg-modalColor rounded-lg border border-borderColor px-1 py-2'>
                     <TableComponent closeRequest={handleClose} howMany={10}/>
                 </motion.section>
-                <div id="target1" className="slide-in yellowCol"></div>
-                <div id="target2" className="slide-in turquoiseCol"></div>
-                <div id="target3" className="slide-in purpleCol"></div>
+                <div id="target1" className="slide-in yellowCol z-[1000000]"></div>
+                <div id="target2" className="slide-in turquoiseCol z-[1000000]"></div>
+                <div id="target3" className="slide-in purpleCol z-[1000000]"></div>
             </section>
         </section>
     )

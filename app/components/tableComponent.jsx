@@ -1,6 +1,7 @@
+"use client"
 import { useEffect, useState } from 'react';
 import InstructionsModal from './instructionsModal';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from './buttonStandard';
@@ -9,6 +10,9 @@ import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Error from './errorComponent';
+import InfoModal from './infoModal';
+import LoadingElement from './loadingElement';
+import { useRouter } from 'next/navigation';
 
 const animatedComponents = makeAnimated();
 
@@ -20,6 +24,9 @@ const TableComponent = ({ closeRequest, howMany }) => {
   const [selectedOptions, setSelectedOptions] = useState(Array.from({ length: howMany }, () => []));
   const [errorsNorm, setErrorsNorm] = useState(Array.from({ length: howMany }, () => ""));
   const [globalError, setGlobalError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"];
 
@@ -53,11 +60,14 @@ const TableComponent = ({ closeRequest, howMany }) => {
   }, []);
 
   const handleExport = (formData) => {
+    setIsLoading(true);
+
     const emptySelects = selectedOptions.some(options => options.length === 0);
 
     if (emptySelects) {
       const newErrors = selectedOptions.map(options => (options.length === 0 ? "Dependency is required." : ""));
       setErrorsNorm(newErrors);
+      setIsLoading(false);
       return;
     }
 
@@ -67,12 +77,14 @@ const TableComponent = ({ closeRequest, howMany }) => {
     if (hasDuplicates) {
       const newErrors = selectedOptions.map((options, index) => (options.includes(activityValues[index]) ? "Dependency cannot be the same as activity." : ""));
       setErrorsNorm(newErrors);
+      setIsLoading(false);
       return;
     }
 
     const hasEmptyValue = selectedOptions.some(options => options.includes("-"));
     if (!hasEmptyValue) {
       setGlobalError("At least one row must contain '-' value.");
+      setIsLoading(false);
       return;
     } else {
       setGlobalError("");
@@ -91,6 +103,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
         newErrors[index] = "After selecting '-' You cannot add more dependencies.";
       });
       setErrorsNorm(newErrors);
+      setIsLoading(false);
       return;
     }
 
@@ -101,7 +114,8 @@ const TableComponent = ({ closeRequest, howMany }) => {
         duration: formData.durations[index],
       };
     });
-    console.log(finalData);
+
+    router.push(`/diagram?data=${JSON.stringify(finalData)}`);
   };
 
   const handleClose = () => {
@@ -308,12 +322,12 @@ const TableComponent = ({ closeRequest, howMany }) => {
         </form>
         <section className='w-full flex gap-5 z-0 sm:flex-row flex-col justify-center items-center px-4 py-0'>
           <Button buttonText="Cancel" buttonType={2} title="Cancel" onClick={handleClose}/>
-          <Button type="submit" form="tableForm" buttonText="Calculate" buttonType={1} title="Calculate Model"/>
+          <Button type="submit" form="tableForm" buttonText={isLoading ? <LoadingElement/> : "Calculate"} disabled={isLoading} buttonType={1} title={isLoading ? "Validation in progress" :"Calculate Model"}/>
         </section>
       </section>
       <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
       {isModalOpen &&   
-        <InstructionsModal closeModal={() => setIsModalOpen(false)}/>
+        <InfoModal closeModal={() => setIsModalOpen(false)}/>
       }
       </AnimatePresence>
     </>
