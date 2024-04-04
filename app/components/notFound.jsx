@@ -20,7 +20,7 @@ export default function NotFound404() {
             <p className='md:text-5xl text-3xl font-extrabold tracking-tighter'>Something went <span className='text-themeColorP'>wrong</span>.</p>
             <Button onClick={handleClick} buttonText="Return home" buttonType={2} title="Go back home"/>
         </section>
-        <div className='w-[40%] h-[40%] gradient2 rounded-full blur-[200px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]'></div>
+        <div className='w-[40%] h-[40%] gradient2 rounded-full dark:md:blur-[200px] md:blur-[200px] blur-[100px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]'></div>
       </section> 
     )
 }

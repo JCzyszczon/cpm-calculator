@@ -52,9 +52,9 @@ export default function GenerateTableModal({ closeModal }) {
     }
 
     return (
-        <section className='w-screen min-h-[100vh] z-[100] max-h-[100px] fixed left-0 top-0 right-0 overflow-x-hidden overflow-y-scroll bg-backgroundColor'>
+        <section className='w-screen min-h-[100vh] z-[100] max-h-[100px] fixed left-0 top-0 right-0 overflow-x-hidden overflow-y-scroll dark:bg-backgroundColorD bg-backgroundColorL'>
             <section ref={scope} onClick={handleOutsideClick} className='w-screen min-h-[100vh] z-[998] flex flex-col justify-center items-center lg:p-14 md:p-8 p-2 pb-20'>
-                <motion.section initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.3, delay: 0.25}} ref={modalRef} className='z-[1000] w-full max-w-[1000px] h-full flex justify-center items-start bg-modalColor rounded-lg border border-borderColor px-1 py-2'>
+                <motion.section initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.3, delay: 0.25}} ref={modalRef} className='z-[1000] w-full max-w-[1000px] h-full flex justify-center items-start dark:bg-modalColorD bg-modalColorL rounded-lg border dark:border-borderColorD border-borderColorL px-1 py-2'>
                     <TableComponent closeRequest={handleClose} howMany={10}/>
                 </motion.section>
                 <div id="target1" className="slide-in yellowCol z-[1000000]"></div>

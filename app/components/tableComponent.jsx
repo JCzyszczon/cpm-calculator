@@ -12,6 +12,7 @@ import Error from './errorComponent';
 import InfoModal from './infoModal';
 import LoadingElement from './loadingElement';
 import { useRouter } from 'next/navigation';
+import { useTheme } from 'next-themes';
 
 const animatedComponents = makeAnimated();
 
@@ -19,11 +20,12 @@ const TableComponent = ({ closeRequest, howMany }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const { theme, setTheme } = useTheme();
   const [selectedOptions, setSelectedOptions] = useState(Array.from({ length: howMany }, () => []));
   const [errorsNorm, setErrorsNorm] = useState(Array.from({ length: howMany }, () => ""));
   const [globalError, setGlobalError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   const router = useRouter();
 
@@ -57,6 +59,14 @@ const TableComponent = ({ closeRequest, howMany }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if(theme === 'dark') {
+      setIsDark(true);
+    } else {
+      setIsDark(false);
+    }
+  }, [theme])
 
   const handleExport = (formData) => {
     setIsLoading(true);
@@ -130,22 +140,22 @@ const TableComponent = ({ closeRequest, howMany }) => {
       ...base,
       textAlign: "center",
       outline: "0px",
-      backgroundColor: "#2f2f2f",
-      color: "#fafaf6",
+      backgroundColor: isDark ? "#2f2f2f" : "#d8d8d4",
+      color: isDark ? "#fafaf6" : "#1e1e1f",
       height: "100%",
-      borderBottom: "1px solid #666",
+      borderBottom: isDark ? "1px solid #666" : "1px solid #aaa",
       ":active": {
         ...base[':active'],
-        backgroundColor: "#666",
+        backgroundColor: isDark ? "#666" : "#aaa",
       },
     }),
     control: (base) => ({
       ...base,
-      backgroundColor: "#1d1d1fcc",
+      backgroundColor: isDark ? "#1d1d1fcc" : "#e9e9e599",
       backdropFilter: "saturate(180%) blur(20px)",
       outline: "0px",
       borderRadius: "0px",
-      border: "2px solid #3e3e3f",
+      border: isDark ? "2px solid #3e3e3f" : "2px solid #b5bbc4",
       height: "auto",
       maxHeight: isMobile ? "40px" : "44px",
       cursor: "pointer",
@@ -154,25 +164,25 @@ const TableComponent = ({ closeRequest, howMany }) => {
       transitionDuration: "300ms",
       ":hover": {
         ...base[':hover'],
-        border: "2px solid #3e3e3f",
+        border: isDark ? "2px solid #3e3e3f" : "2px solid #b5bbc4",
       },
       ":focus-within": {
         ...base[':focus-within'],
-        border: "2px solid #3e3e3f",
+        border: isDark ? "2px solid #3e3e3f" : "2px solid #b5bbc4",
         borderBottom: "2px solid #A374FF",
         boxShadow: "0px",
       },
     }),
     multiValue: (base) => ({
       ...base,
-      backgroundColor: "#666",
-      color: "#fafaf6",
+      backgroundColor: isDark ? "#666" : "#d8d8d4",
+      color: isDark ? "#fafaf6" : "#1d1d1f",
       padding: "0px",
       margin: "1px 1px",
     }),
     multiValueLabel: (base) => ({
       ...base,
-      color: "#fafaf6",
+      color: isDark ? "#fafaf6" : "#1d1d1f",
       padding: "0px 6px",
     }),
     multiValueRemove: (base) => ({
@@ -185,8 +195,8 @@ const TableComponent = ({ closeRequest, howMany }) => {
     }),
     menu: (base) => ({
       ...base,
-      backgroundColor: "#2f2f2f",
-      border: "1px solid #666",
+      backgroundColor: isDark ? "#2f2f2f" : "#d8d8d4",
+      border: isDark ? "1px solid #666" : "1px solid #aaa",
       overflow: "hidden" ,
       zIndex: 100000000000000,
     }),
@@ -235,7 +245,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
           <span className='lg:w-[25%] w-[34%] h-[2px] rounded-full gradient2'></span>
         </section>
         <form id='tableForm' className='w-full flex flex-col justify-center items-center gap-11 relative' onSubmit={handleSubmit(handleExport)}>
-          <table className='navbar z-[1000]'>
+          <table className='dark:navbar navbar2 z-[1000]'>
             <thead>
               <tr className='uppercase font-extrabold sm:text-xs text-[10px] tracking-widest'>
                 <th className='text-themeColorT pb-3'>Activity</th>
@@ -256,7 +266,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
                           type="text"
                           value={field.value}
                           disabled
-                          className='w-full disabled:cursor-text text-center navbar p-2 border-2 border-borderColor group-focus-within/main:border-l-themeColorT outline-none focus:border-b-themeColorY focus:border-b-2 duration-300'
+                          className='w-full disabled:cursor-text text-center dark:navbar navbar2 p-2 border-2 dark:border-borderColorD border-borderColorL group-focus-within/main:border-l-themeColorT outline-none focus:border-b-themeColorY focus:border-b-2 duration-300'
                         />
                       )}
                     />
@@ -298,7 +308,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
                         <input
                           type="number"
                           {...field}
-                          className='w-full text-center navbar p-2 border-2 border-borderColor outline-none focus:border-b-themeColorY focus:border-b-2 duration-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                          className='w-full text-center navbar2 p-2 border-2 dark:border-borderColorD border-borderColorL outline-none focus:border-b-themeColorY focus:border-b-2 duration-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
                         />
                       )}
                     />

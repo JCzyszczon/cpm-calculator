@@ -30,11 +30,6 @@ export default function Transition({ children }) {
             handleAnimate();
             handleAnimate2();
             handleAnimate3();
-        } else {
-            handleAnimate();
-            handleAnimate2();
-            handleAnimate3();
-            setTimeout(safeToRemove, 1250);
         }
     }, [isPresent]);
 

@@ -6,11 +6,25 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --backgroundColor: #fafaf6;
+  --textColor: #1d1d1f;
+  --buttonColor: #1d1d1f00;
+  --themeColorY: #ffd074;
+  --themeColorT: #17f1d1;
+  --themeColorP: #A374FF;
+  --navbarColor:  #fafaf699;
+  --navbarColor2: #e9e9e599;
+}
+
+[class='dark'] {
   --backgroundColor: #1d1d1f;
+  --buttonColor: #1d1d1f00;
   --textColor: #fafaf6;
   --themeColorY: #ffd074;
   --themeColorT: #17f1d1;
   --themeColorP: #A374FF;
+  --navbarColor: #1d1d1fcc;
+  --navbarColor2: #1d1d1fcc;
 }
 
 /* custom scrollbar */
@@ -45,17 +59,10 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
     color: var(--textColor);
     background-color: var(--backgroundColor);
+    transition-duration: 300ms;
 }
 
 @layer utilities {
@@ -65,8 +72,14 @@ body {
 }
 
 .navbar {
-  background-color: rgba(29, 29, 31, 0.8);
   backdrop-filter: saturate(180%) blur(20px);
+  transition-duration: 300ms;
+}
+
+.navbar2 {
+  background-color: var(--navbarColor2);
+  backdrop-filter: saturate(180%) blur(20px);
+  transition-duration: 300ms;
 }
 
 .slide-in {
@@ -208,7 +221,7 @@ body {
   width: 250px;
   height: 50px;
   border-radius: 999rem;
-  color: var(--backgroundColor)
+  color: #1d1d1f;
 }
 
 .btn:hover .btn__bg {
@@ -324,7 +337,7 @@ body {
   height: inherit;
   width: inherit;
   transition: scale 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-  background-color: var(--backgroundColor);
+  background-color: var(--buttonColor);
   border-radius: 999rem;
   border: 1px solid var(--themeColorP);
   overflow: hidden;
