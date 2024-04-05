@@ -24,7 +24,7 @@ module.exports = {
         themeColorY: "#ffd074",
         themeColorT: "#17f1d1",
         themeColorP: "#A374FF",
-      }
+      },
     },
   },
   plugins: [],

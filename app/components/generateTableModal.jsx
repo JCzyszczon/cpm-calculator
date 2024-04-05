@@ -2,8 +2,9 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useAnimate, usePresence } from "framer-motion";
 import TableComponent from './tableComponent';
+import Button from './buttonStandard';
 
-export default function GenerateTableModal({ closeModal }) {
+export default function GenerateTableModal({ closeModal, rowNumber }) {
 
     const modalRef = useRef(null);
     const [scope, animate] = useAnimate();
@@ -51,11 +52,22 @@ export default function GenerateTableModal({ closeModal }) {
         closeModal();
     }
 
+    const handleClick = () => {
+        window.location.reload();
+    }
+
     return (
         <section className='w-screen min-h-[100vh] z-[100] max-h-[100px] fixed left-0 top-0 right-0 overflow-x-hidden overflow-y-scroll dark:bg-backgroundColorD bg-backgroundColorL'>
             <section ref={scope} onClick={handleOutsideClick} className='w-screen min-h-[100vh] z-[998] flex flex-col justify-center items-center lg:p-14 md:p-8 p-2 pb-20'>
                 <motion.section initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.3, delay: 0.25}} ref={modalRef} className='z-[1000] w-full max-w-[1000px] h-full flex justify-center items-start dark:bg-modalColorD bg-modalColorL rounded-lg border dark:border-borderColorD border-borderColorL px-1 py-2'>
-                    <TableComponent closeRequest={handleClose} howMany={10}/>
+                    {rowNumber < 2 || rowNumber > 16 ? (
+                        <section className='w-full flex flex-col justify-center items-center gap-5 py-10'>
+                            <h3 className='font-extrabold text-xl tracking-tighter'>Something went wrong.</h3>
+                            <Button onClick={handleClick} buttonType={1} buttonText="Return home" />
+                        </section>
+                    ) : (
+                        <TableComponent closeRequest={handleClose} howMany={rowNumber}/>
+                    )}
                 </motion.section>
                 <div id="target1" className="slide-in yellowCol z-[1000000]"></div>
                 <div id="target2" className="slide-in turquoiseCol z-[1000000]"></div>

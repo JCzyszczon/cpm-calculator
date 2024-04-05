@@ -39,7 +39,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
       yup.string().required("Activity is required")
     ),
     durations: yup.array().of(
-      yup.number().min(0.01, "Duration must be a positive number.").max(1000, "Duration must be less than a 1000.").required("Duration is required.").typeError("Duration must be a number.")
+      yup.number().min(0.01, "Duration must be a positive number.").max(999, "Duration must be less than a 1000.").required("Duration is required.").typeError("Duration must be a number.")
     )
   });
 
@@ -270,7 +270,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
                         />
                       )}
                     />
-                    <span className='absolute left-1/2 top-1/2 -translate-x-1/2 rounded-full -translate-y-1/2 w-4 h-4 blur-3xl bg-themeColorT z-[-1] opacity-0 group-focus-within/main:opacity-100 duration-300'></span>
+                    <span className='absolute left-1/2 top-1/2 -translate-x-1/2 rounded-full -translate-y-1/2 w-6 h-6 blur-3xl bg-themeColorT z-[-1] opacity-0 group-focus-within/main:opacity-100 duration-300'></span>
                   </td>
                   <td className="w-2/5 relative">
                     <Select
@@ -308,7 +308,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
                         <input
                           type="number"
                           {...field}
-                          className='w-full text-center navbar2 p-2 border-2 dark:border-borderColorD border-borderColorL outline-none focus:border-b-themeColorY focus:border-b-2 duration-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                          className='w-full text-center navbar2 p-2 border-2 dark:border-borderColorD border-borderColorL outline-none dark:focus:border-b-themeColorY focus:border-b-themeColorY focus:border-b-2 duration-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
                         />
                       )}
                     />
@@ -321,7 +321,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
                 </tr>
               ))}
             </tbody>
-            <span className='w-48 h-48 gradient2 rounded-full blur-3xl fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]'></span>
+            <span className='w-64 h-64 gradient2 rounded-full blur-[100px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]'></span>
           </table>
           <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
           {globalError && (

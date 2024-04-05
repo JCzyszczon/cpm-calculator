@@ -28,35 +28,35 @@ export default function InfoModal({ closeModal }) {
                     </section>
                     <p className='w-full text-start md:text-base text-sm px-4'>To enter the problem data, you must take into consideration the following rules:</p>
                     <motion.section initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{duration: 0.3, delay: 0.3}} className='w-full flex justify-start items-center'>
-                        <section className='md:w-4/5 w-full h-auto flex md:bg-transparent bg-[#282828] flex-col justify-center items-start gap-3 border-2 dark:border-borderColorD border-borderColorL border-l-themeColorT navbar2 md:px-10 pl-7 pr-1 py-4 relative overflow-hidden'>
+                        <section className='md:w-4/5 w-full h-auto flex md:bg-transparent bg-[#282828] flex-col justify-center items-start gap-3 border-2 dark:border-borderColorD border-borderColorL dark:border-l-themeColorT border-l-themeColorT navbar2 md:px-10 pl-7 pr-1 py-4 relative overflow-hidden'>
                             <h4 className='w-1/4 text-center font-extrabold sm:text-sm uppercase text-[12px] tracking-widest text-themeColorT'>Activity:</h4>
                             <ul className='list-disc marker:text-themeColorT md:text-base text-sm flex flex-col justify-center items-start gap-2'>
                                 <li>Activities are added automatically based on the number of events provided by the user.</li>
                                 <li>You cannot change activity names.</li>
                             </ul>
-                            <div className='w-24 h-24 bg-themeColorT rounded-full blur-3xl absolute  right-0 bottom-0'></div>
+                            <div className='w-24 h-24 bg-themeColorT rounded-full blur-[120px] absolute right-0 bottom-0'></div>
                         </section>
                     </motion.section>
                     <motion.section initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{duration: 0.3, delay: 0.45}} className='w-full flex justify-end items-center'>
-                        <section className='md:w-4/5 w-full h-auto flex flex-col md:bg-transparent bg-[#282828] justify-center items-start gap-3 border-2 dark:border-borderColorD border-borderColorL border-l-themeColorP navbar2 md:px-10 pl-7 pr-1 py-4 relative overflow-hidden'>
+                        <section className='md:w-4/5 w-full h-auto flex flex-col md:bg-transparent bg-[#282828] justify-center items-start gap-3 border-2 dark:border-borderColorD border-borderColorL dark:border-l-themeColorP border-l-themeColorP navbar2 md:px-10 pl-7 pr-1 py-4 relative overflow-hidden'>
                             <h4 className='w-1/4 text-center font-extrabold sm:text-sm uppercase text-[12px] tracking-widest text-themeColorP'>Dependency:</h4>
                             <ul className='list-disc marker:text-themeColorP md:text-base text-sm flex flex-col justify-center items-start gap-2'>
                                 <li>At least one dependency must have the value <span className='text-themeColorP'>-</span> (start value).</li>
                                 <li>If a field has <span className='text-themeColorP'>-</span> dependency selected, no other dependencies can be added.</li>
                                 <li>Dependency cannot have the same value as the activity that it depends on.</li>
                             </ul>
-                            <div className='w-24 h-24 bg-themeColorP rounded-full blur-3xl absolute right-0 bottom-0'></div>
+                            <div className='w-24 h-24 bg-themeColorP rounded-full blur-[120px] absolute right-0 bottom-0'></div>
                         </section>
                     </motion.section>
                     <motion.section initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{duration: 0.3, delay: 0.6}} className='w-full flex justify-start items-center'>
-                        <section className='md:w-4/5 w-full h-auto flex flex-col md:bg-transparent bg-[#282828] justify-center items-start gap-3 border-2 dark:border-borderColorD border-borderColorL border-l-themeColorY navbar2 md:px-10 pl-7 pr-1 py-4 relative overflow-hidden'>
+                        <section className='md:w-4/5 w-full h-auto flex flex-col md:bg-transparent bg-[#282828] justify-center items-start gap-3 border-2 dark:border-borderColorD border-borderColorL dark:border-l-themeColorY border-l-themeColorY navbar2 md:px-10 pl-7 pr-1 py-4 relative overflow-hidden'>
                             <h4 className='w-1/4 text-center font-extrabold sm:text-sm uppercase text-[12px] tracking-widest text-themeColorY'>Duration:</h4>
                             <ul className='list-disc marker:text-themeColorY md:text-base text-sm flex flex-col justify-center items-start gap-2'>
                                 <li>For each activity user have to provide duration.</li>
                                 <li>Duration has to be a positive value.</li>
                                 <li>The duration value cannot exceed 1000.</li>
                             </ul>
-                            <div className='w-24 h-24 bg-themeColorY rounded-full blur-3xl absolute right-0 bottom-0'></div>
+                            <div className='w-24 h-24 bg-themeColorY rounded-full blur-[120px] absolute right-0 bottom-0'></div>
                         </section>
                     </motion.section>
                 </motion.section>

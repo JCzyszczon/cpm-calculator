@@ -26,7 +26,7 @@ export default function Navbar() {
         return () => {
           window.removeEventListener('scroll', handleScroll);
         };
-      }, []);
+    }, [theme]);
 
     return (
         <header style={navbarStyle} className='fixed top-0 left-0 w-full h-auto navbar z-[10]'>
