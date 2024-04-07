@@ -72,10 +72,10 @@ export default function MainPanel() {
         <>
             <section className="md:w-1/2 w-full min-h-screen flex justify-center items-center lg:py-[10%] py-[20%] relative">
                 <section className="relative w-[80%] navbar2 overflow-hidden h-full dark:bg-modalColorD duration-300 bg-modalColorL border dark:border-borderColorD border-borderColorL rounded-md flex flex-col md:gap-8 gap-6 justify-center items-center md:px-10 px-[6%] py-14">
-                    {/*<section className='w-full h-auto flex flex-col justify-center items-center md:gap-3 gap-2'>
+                    <section className='w-full h-auto flex flex-col justify-center items-center md:gap-3 gap-2'>
                         <h1 className='responsive_text2 font-extrabold tracking-tighter text-center'>Critical Path Method</h1>
                         <motion.span initial={{width: 0}} animate={{width: "20%"}} transition={{duration: 0.4, type: "tween"}} className='w-[20%] h-[2px] rounded-full gradient2'></motion.span>
-                    </section>*/}
+                    </section>
                     <p className="w-full text-center md:text-base mt-2 text-sm">Please enter the number of activities in the <span className="text-themeColorP">field below</span>, in order to generate proper diagram model.</p>
                     <form id="numberForm" className="w-full max-w-[450px] relative" onSubmit={handleSubmit}>
                         <label htmlFor="number" className="pl-2 uppercase font-extrabold sm:text-xs text-[10px] tracking-widest">Number of Activities:</label>
@@ -97,16 +97,18 @@ export default function MainPanel() {
                         <div className="w-full max-w-[140px] h-[1px] dark:bg-borderColorD bg-borderColorL relative"></div>
                         <button className="font-extrabold flex justify-center items-center gap-2 group md:text-base text-sm tracking-widest"><span className="relative">Learn more<span className="group-hover:w-full w-0 absolute left-0 bottom-0 h-[2px] gradient2 duration-300"></span></span><span className="group-hover:rotate-90 duration-300"><FaArrowRightLong/></span></button>
                     </section>
-                    {/*<span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>*/}
+                    {!isMobile && 
+                      <span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>
+                    }
                 </section>
             </section>
-            {/*!isMobile &&
+            {!isMobile &&
               <section className="w-1/2 min-h-screen overflow-hidden flex flex-col justify-between items-start">
               {backgroundColors.map((color, index) => (
                   <AnimatedDiv key={index} delay={delays[index]} backgroundColor={color} />
               ))}
               </section>
-            }*/}
+            }
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isModalOpen &&   
                 <GenerateTableModal rowNumber={number} closeModal={() => setIsModalOpen(false)}/>
