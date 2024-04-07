@@ -275,7 +275,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
                         />
                       )}
                     />
-                    <span className='absolute left-1/2 top-1/2 -translate-x-1/2 rounded-full -translate-y-1/2 w-6 h-6 blur-3xl bg-themeColorT z-[-1] opacity-0 group-focus-within/main:opacity-100 duration-300'></span>
+                    {!isMobile && <span className='absolute left-1/2 top-1/2 -translate-x-1/2 rounded-full -translate-y-1/2 w-6 h-6 blur-3xl bg-themeColorT z-[-1] opacity-0 group-focus-within/main:opacity-100 duration-300'></span>}
                   </td>
                   <td className="w-2/5 relative">
                     <Select
@@ -326,7 +326,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
                 </tr>
               ))}
             </tbody>
-            <span className='w-64 h-64 gradient2 rounded-full blur-[100px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]'></span>
+            {!isMobile && <span className='w-64 h-64 gradient2 rounded-full blur-[100px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]'></span>}
           </table>
           <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
           {globalError && (
