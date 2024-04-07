@@ -1,16 +1,19 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import GenerateTableModal from "./generateTableModal";
 import { AnimatePresence, motion } from "framer-motion";
 import Button from "./buttonStandard";
 import { FaArrowRightLong } from 'react-icons/fa6';
 import Error from './errorComponent';
+import AnimatedDiv from "./animatedDiv";
 
 export default function MainPanel() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [number, setNumber] = useState('');
     const [error, setError] = useState('');
+    const backgroundColors = ['themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT'];
+    const delays = [1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35];
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -51,15 +54,9 @@ export default function MainPanel() {
         };
     }, [isModalOpen]);
 
-    const rectangleStyle = {
-        fill: 'rgb(0,0,255,0)',
-        strokeWidth: 2,
-        stroke: 'rgb(0,0,0)'
-    };
-
     return (
         <>
-            <section className="md:w-1/2 w-full min-h-screen flex justify-center items-center lg:py-[10%] py-[20%]">
+            <section className="md:w-1/2 w-full min-h-screen flex justify-center items-center lg:py-[10%] py-[20%] relative">
                 <section className="relative w-[80%] navbar2 overflow-hidden h-full dark:bg-modalColorD duration-300 bg-modalColorL border dark:border-borderColorD border-borderColorL rounded-md flex flex-col md:gap-8 gap-6 justify-center items-center md:px-10 px-[6%] py-14">
                     <section className='w-full h-auto flex flex-col justify-center items-center md:gap-3 gap-2'>
                         <h1 className='responsive_text2 font-extrabold tracking-tighter text-center'>Critical Path Method</h1>
@@ -89,15 +86,10 @@ export default function MainPanel() {
                     <span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>
                 </section>
             </section>
-            <section className="w-1/2 h-screen overflow-hidden md:flex flex-col justify-between items-start">
-                <motion.div initial={{width: "0%"}} animate={{width: "150%"}} transition={{duration: 1, type: "tween", delay: 1}} className="w-[150%] h-[100px] bg-themeColorP -rotate-12 -translate-x-[10%] -translate-y-[20%]"></motion.div>
-                <motion.div initial={{width: "0%"}} animate={{width: "150%"}} transition={{duration: 1, type: "tween", delay: 1.05}} className="w-[150%] h-[100px] bg-themeColorT -rotate-12 -translate-x-[10%] -translate-y-[20%]"></motion.div>
-                <motion.div initial={{width: "0%"}} animate={{width: "150%"}} transition={{duration: 1, type: "tween", delay: 1.1}} className="w-[150%] h-[100px] bg-themeColorY -rotate-12 -translate-x-[10%] -translate-y-[20%]"></motion.div>
-                <motion.div initial={{width: "0%"}} animate={{width: "150%"}} transition={{duration: 1, type: "tween", delay: 1.15}} className="w-[150%] h-[100px] bg-themeColorP -rotate-12 -translate-x-[10%] -translate-y-[20%]"></motion.div>
-                <motion.div initial={{width: "0%"}} animate={{width: "150%"}} transition={{duration: 1, type: "tween", delay: 1.20}} className="w-[150%] h-[100px] bg-themeColorT -rotate-12 -translate-x-[10%] -translate-y-[20%]"></motion.div>
-                <motion.div initial={{width: "0%"}} animate={{width: "150%"}} transition={{duration: 1, type: "tween", delay: 1.25}} className="w-[150%] h-[100px] bg-themeColorY -rotate-12 -translate-x-[10%] -translate-y-[20%]"></motion.div>
-                <motion.div initial={{width: "0%"}} animate={{width: "150%"}} transition={{duration: 1, type: "tween", delay: 1.3}} className="w-[150%] h-[100px] bg-themeColorP -rotate-12 -translate-x-[10%] -translate-y-[20%]"></motion.div>
-                <motion.div initial={{width: "0%"}} animate={{width: "150%"}} transition={{duration: 1, type: "tween", delay: 1.35}} className="w-[150%] h-[100px] bg-themeColorT -rotate-12 -translate-x-[10%] -translate-y-[20%]"></motion.div>
+            <section className="w-1/2 min-h-screen overflow-hidden md:flex flex-col hidden justify-between items-start">
+            {backgroundColors.map((color, index) => (
+                <AnimatedDiv key={index} delay={delays[index]} backgroundColor={color} />
+            ))}
             </section>
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isModalOpen &&   
