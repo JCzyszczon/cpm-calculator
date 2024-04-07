@@ -8,9 +8,13 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "CPM Calculator",
   description: "Critical Path Method Calculator. The project was created for classes at AGH in 2024.",
+  generator: 'Next.js',
+  applicationName: 'CPM Calculator',
+  referrer: 'origin-when-cross-origin',
   alternates: {
     canonical: 'https://cpm-calculator-omega.vercel.app',
   },
+  themeColor: '#17f1d1',
 };
 
 export default function RootLayout({ children }) {

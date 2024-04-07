@@ -12,6 +12,7 @@ export default function MainPanel() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [number, setNumber] = useState('');
     const [error, setError] = useState('');
+    const [isMobile, setIsMobile] = useState(false);
     const backgroundColors = ['themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT'];
     const delays = [1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35];
 
@@ -54,6 +55,19 @@ export default function MainPanel() {
         };
     }, [isModalOpen]);
 
+    useEffect(() => {
+      function handleResize() {
+        if (window.innerWidth < 768) {
+          setIsMobile(true);
+        } else {
+          setIsMobile(false);
+        }
+      }
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <>
             <section className="md:w-1/2 w-full min-h-screen flex justify-center items-center lg:py-[10%] py-[20%] relative">
@@ -86,11 +100,13 @@ export default function MainPanel() {
                     <span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>
                 </section>
             </section>
-            <section className="w-1/2 min-h-screen overflow-hidden md:flex flex-col hidden justify-between items-start">
-            {backgroundColors.map((color, index) => (
-                <AnimatedDiv key={index} delay={delays[index]} backgroundColor={color} />
-            ))}
-            </section>
+            {!isMobile &&
+              <section className="w-1/2 min-h-screen overflow-hidden flex flex-col justify-between items-start">
+              {backgroundColors.map((color, index) => (
+                  <AnimatedDiv key={index} delay={delays[index]} backgroundColor={color} />
+              ))}
+              </section>
+            }
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isModalOpen &&   
                 <GenerateTableModal rowNumber={number} closeModal={() => setIsModalOpen(false)}/>
