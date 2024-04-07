@@ -100,13 +100,13 @@ export default function MainPanel() {
                     <span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>
                 </section>
             </section>
-            {!isMobile &&
+            {/*!isMobile &&
               <section className="w-1/2 min-h-screen overflow-hidden flex flex-col justify-between items-start">
               {backgroundColors.map((color, index) => (
                   <AnimatedDiv key={index} delay={delays[index]} backgroundColor={color} />
               ))}
               </section>
-            }
+            }*/}
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isModalOpen &&   
                 <GenerateTableModal rowNumber={number} closeModal={() => setIsModalOpen(false)}/>
