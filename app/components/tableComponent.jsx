@@ -121,6 +121,11 @@ const TableComponent = ({ closeRequest, howMany }) => {
         activity: activity,
         dependencies: selectedOptions[index],
         duration: formData.durations[index],
+        ES: null,
+        EF: null,
+        LS: null,
+        LF: null,
+        Float: null,
       };
     });
 
