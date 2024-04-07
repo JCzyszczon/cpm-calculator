@@ -94,7 +94,7 @@ function calculateCriticalPath(data) {
 
 export default function DiagramPanel({ diagramData }) {
 
-    //console.log(diagramData);
+    console.log(diagramData);
 
     const calculatedData = calculateCPM(diagramData);
     console.log(calculatedData);
