@@ -97,7 +97,7 @@ export default function MainPanel() {
                         <div className="w-full max-w-[140px] h-[1px] dark:bg-borderColorD bg-borderColorL relative"></div>
                         <button className="font-extrabold flex justify-center items-center gap-2 group md:text-base text-sm tracking-widest"><span className="relative">Learn more<span className="group-hover:w-full w-0 absolute left-0 bottom-0 h-[2px] gradient2 duration-300"></span></span><span className="group-hover:rotate-90 duration-300"><FaArrowRightLong/></span></button>
                     </section>
-                    <span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>
+                    {/*<span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>*/}
                 </section>
             </section>
             {/*!isMobile &&
