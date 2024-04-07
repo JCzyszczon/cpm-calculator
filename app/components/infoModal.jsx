@@ -1,11 +1,12 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {IoMdClose} from 'react-icons/io';
 import { motion } from "framer-motion";
 
 export default function InfoModal({ closeModal }) {
 
     const modalRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
 
     const handleOutsideClick = (event) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -16,6 +17,19 @@ export default function InfoModal({ closeModal }) {
     const handleClose = () => {
         closeModal();
     }
+
+    useEffect(() => {
+        function handleResize() {
+          if (window.innerWidth < 768) {
+            setIsMobile(true);
+          } else {
+            setIsMobile(false);
+          }
+        }
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <section className="w-screen min-h-[100vh] max-h-[100px] z-[1100] fixed left-0 top-0 right-0 overflow-x-hidden overflow-y-scroll bg-[#11111199]">
@@ -34,7 +48,7 @@ export default function InfoModal({ closeModal }) {
                                 <li>Activities are added automatically based on the number of events provided by the user.</li>
                                 <li>You cannot change activity names.</li>
                             </ul>
-                            <div className='w-24 h-24 bg-themeColorT rounded-full blur-[120px] absolute right-0 bottom-0'></div>
+                            {!isMobile && <div className='w-24 h-24 bg-themeColorT rounded-full blur-[120px] absolute right-0 bottom-0'></div>}
                         </section>
                     </motion.section>
                     <motion.section initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{duration: 0.3, delay: 0.45}} className='w-full flex justify-end items-center'>
@@ -45,7 +59,7 @@ export default function InfoModal({ closeModal }) {
                                 <li>If a field has <span className='text-themeColorP'>-</span> dependency selected, no other dependencies can be added.</li>
                                 <li>Dependency cannot have the same value as the activity that it depends on.</li>
                             </ul>
-                            <div className='w-24 h-24 bg-themeColorP rounded-full blur-[120px] absolute right-0 bottom-0'></div>
+                            {!isMobile && <div className='w-24 h-24 bg-themeColorP rounded-full blur-[120px] absolute right-0 bottom-0'></div>}
                         </section>
                     </motion.section>
                     <motion.section initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{duration: 0.3, delay: 0.6}} className='w-full flex justify-start items-center'>
@@ -56,7 +70,7 @@ export default function InfoModal({ closeModal }) {
                                 <li>Duration has to be a positive value.</li>
                                 <li>The duration value cannot exceed 1000.</li>
                             </ul>
-                            <div className='w-24 h-24 bg-themeColorY rounded-full blur-[120px] absolute right-0 bottom-0'></div>
+                            {!isMobile && <div className='w-24 h-24 bg-themeColorY rounded-full blur-[120px] absolute right-0 bottom-0'></div>}
                         </section>
                     </motion.section>
                 </motion.section>
