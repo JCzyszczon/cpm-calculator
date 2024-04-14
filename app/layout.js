@@ -14,8 +14,11 @@ export const metadata = {
   alternates: {
     canonical: 'https://cpm-calculator-omega.vercel.app',
   },
-  themeColor: '#17f1d1',
 };
+
+export const viewport = {
+  themeColor: '#17f1d1',
+}
 
 export default function RootLayout({ children }) {
   return (
