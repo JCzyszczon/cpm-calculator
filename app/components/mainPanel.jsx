@@ -78,7 +78,7 @@ export default function MainPanel() {
                           <h1 className='responsive_text2 font-extrabold tracking-tighter text-center'>Critical Path Method</h1>
                           <motion.span initial={{width: 0}} animate={{width: "20%"}} transition={{duration: 0.4, type: "tween"}} className='w-[20%] h-[2px] rounded-full gradient2'></motion.span>
                       </section>
-                      <p className="w-full text-center md:text-base mt-2 text-sm">Please enter the number of activities in the <span className="text-themeColorP">field below</span>, in order to generate proper diagram model.</p>
+                      <p className="w-full text-center md:text-base mt-2 text-sm">Please enter the number of activities in the <span className="text-themeColorP font-extrabold">field below</span>, in order to generate proper diagram model.</p>
                       <form id="numberForm" className="w-full max-w-[450px] relative" onSubmit={handleSubmit}>
                           <label htmlFor="number" className="pl-2 uppercase font-extrabold sm:text-xs text-[10px] tracking-widest">Number of Activities:</label>
                           <input
