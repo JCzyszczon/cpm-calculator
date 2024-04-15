@@ -19,7 +19,7 @@ function CpmDetailsModal({ data, closeModal }) {
     return (
         <section className="w-screen min-h-[100vh] max-h-[100px] z-[1100] fixed left-0 top-0 right-0 overflow-x-hidden overflow-y-scroll bg-[#11111199]">
             <section onClick={handleOutsideClick} className='w-screen min-h-[100vh] z-[1101] flex flex-col justify-center items-center lg:p-14 md:p-8 p-2 pb-20'>
-                <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.4, type: "tween"}} exit={{opacity: 0}} ref={modalRef} className='w-full max-w-[640px] h-full flex flex-col justify-center relative items-center dark:bg-modalColorD bg-modalColorL rounded-lg border dark:border-borderColorD border-borderColorL md:px-12 px-6 md:py-14 py-10 md:gap-8 gap-5'>
+                <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.4, type: "tween"}} exit={{opacity: 0}} ref={modalRef} className='w-full overflow-hidden max-w-[640px] h-full flex flex-col justify-center relative items-center dark:bg-modalColorD bg-modalColorL rounded-lg border dark:border-borderColorD border-borderColorL md:px-12 px-6 md:py-14 py-10 md:gap-8 gap-5'>
                     <IoMdClose title='Close Tooltip' onClick={handleClose} className='absolute right-3 top-3 text-xl cursor-pointer'/>
                     <section className='w-full h-auto flex flex-col justify-center items-center md:gap-3 gap-2'>
                         <h2 className='md:text-3xl responsive_text2 font-extrabold tracking-tighter text-center'>Activity Details</h2>
@@ -40,6 +40,9 @@ function CpmDetailsModal({ data, closeModal }) {
                         ))}</h3>
                         <h3 className='md:text-base text-sm'>Critical Path: {data.Float == 0 ? <span className='text-themeColorT font-extrabold pl-2'>Yes</span> : <span className='text-themeColorP font-extrabold pl-2'>No</span>}</h3>
                     </section>
+                    <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorT -rotate-45 md:translate-x-40 translate-x-28'></span>
+                    <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorP -rotate-45 md:translate-x-40 translate-x-28 translate-y-10'></span>
+                    <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorY -rotate-45 md:translate-x-40 translate-x-28 translate-y-20'></span>
                 </motion.section>
             </section>
         </section>
