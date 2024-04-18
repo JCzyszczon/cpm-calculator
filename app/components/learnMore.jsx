@@ -1,54 +1,56 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import targetImg from '../img/3d-target.png';
-import pieChart from '../img/pie-chart.png';
-import alarmImg from '../img/3d-alarm.png';
 import { motion } from 'framer-motion';
+import Button from './buttonStandard';
+import FAQItem from './FAQItem';
 
 function LearnMore() {
-    const [isMobile, setIsMobile] = useState(false);
+    const [expanded, setExpanded] = useState([]);
 
-    useEffect(() => {
-        function handleResize() {
-          if (window.innerWidth < 768) {
-            setIsMobile(true);
-          } else {
-            setIsMobile(false);
-          }
-        }
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const handleToggle = (index) => {
+        const newExpanded = [...expanded];
+        
+        newExpanded.forEach((item, i) => {
+            if (i !== index) {
+                newExpanded[i] = false;
+            }
+        });
+        
+        newExpanded[index] = !newExpanded[index];
+        
+        setExpanded(newExpanded);
+    };
 
     return (
-        <section id="learnMore" className='w-full min-h-screen dark:bg-backgroundColorD bg-backgroundColorL flex flex-col justify-center items-center md:px-[10%] px-4 py-6 md:gap-28 gap-14 relative'>
-            {/*<motion.section initial={{opacity: 0, x: 10}} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.1 }} viewport={{ once: true, amount: 0.5 }} className='w-full flex md:flex-row flex-col md:justify-start justify-center items-center gap-10 z-[1]'>
-                <Image src={pieChart} alt='pieChartIcon' className='w-[100%] lg:max-w-[140px] md:max-w-[110px] max-w-[80px] aspect-square'/>
-                <section className='flex flex-col justify-center md:items-start items-center gap-4 max-w-[500px]'>
-                    <h2 className='md:text-3xl repsonsive_text2 font-bold text-themeColorP'>What is CPM?</h2>
-                    <p className='md:text-base text-sm md:text-start text-center'>The Critical Path Method (CPM) is a project management tool that helps in planning and scheduling tasks. It involves identifying the longest sequence of tasks in a project, which is the sequence that has the greatest impact on the overall project duration.</p>
-                </section>
-            </motion.section>
-            <motion.section initial={{opacity: 0, x: 10}} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }} viewport={{ once: true, amount: 0.5 }} className='w-full flex md:flex-row flex-col md:justify-end justify-center items-center md:gap-10 gap-4 z-[1]'>
-                <Image src={targetImg} alt='targetIcon' className='w-[100%] lg:max-w-[140px] max-w-[110px] md:flex hidden aspect-square'/>
-                <section className='flex flex-col justify-center md:items-start items-center gap-4 text-start max-w-[500px]'>
-                    <h2 className='md:text-3xl repsonsive_text2 font-bold text-themeColorY'>What is CPM purpose?</h2>
-                    <p className='md:text-base text-sm md:text-start text-center'>CPM allows determining the minimum time required to complete a project and identifying critical tasks that cannot be delayed without extending the total project duration.</p>
-                </section>
-            </motion.section>
-            <motion.section initial={{opacity: 0, x: 10}} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.3 }} viewport={{ once: true, amount: 0.5 }} className='w-full flex md:flex-row flex-col md:justify-start justify-center items-center md:gap-10 gap-4 z-[1] lg:pl-[20%] pl-0'>
-                <Image src={alarmImg} alt='alarmImgIcon' className='w-[100%] lg:max-w-[140px] max-w-[110px] md:flex hidden aspect-square'/>
-                <section className='flex flex-col justify-center gap-4 md:items-start items-center max-w-[500px]'>
-                    <h2 className='md:text-3xl repsonsive_text2 font-bold text-themeColorT'>How does the CPM help?</h2>
-                    <p className='md:text-base text-sm md:text-start text-center'>This method is particularly useful in managing construction projects, engineering projects, and programming due to its ability to effectively analyze task dependencies, optimize project schedules, and mitigate risks.</p>
-                </section>
-            </motion.section>
-    {!isMobile && <span className='w-64 h-64 bg-themeColorP rounded-full blur-[180px] absolute left-10 bottom-0 -translate-x-1/2 z-[0]'></span>}*/}
-            <section className='flex flex-col justify-center items-center gap-5'>
-                <div className='px-6 py-1 bg-modalColorL border border-borderColorL rounded-lg font-bold text-xs text-borderColorD'>FAQ</div>
-                <h2 className='responsive_text font-bold'>We&apos;re here to answer all your questions.</h2>
+        <section id="learnMore" className='w-full min-h-screen dark:bg-backgroundColorD bg-backgroundColorL flex flex-col justify-start items-center md:px-[30%] px-4 py-[4%] md:gap-20 gap-10 relative'>
+            <section className='flex flex-col justify-center items-center md:gap-10 gap-4 text-center md:px-0 px-[4%]'>
+                <div className='px-6 py-1 dark:bg-modalColorD dark:border-borderColorD bg-modalColorL border border-borderColorL rounded-lg font-bold text-xs text-borderColorD'>FAQ</div>
+                <motion.h2 initial={{opacity: 0, x: -10}} whileInView={{opacity: 1, x: 0}} transition={{duration: 0.4, type: "tween"}} viewport={{ once: true, amount: 0.7 }} className='responsive_text font-bold'>We&apos;re here to <span className='text-themeColorT'>answer</span> all <span className='text-themeColorY'>your</span> <span className='text-themeColorP'>questions.</span></motion.h2>
+                <p className='md:text-base text-sm'>If you&apos;re new here or looking for information, this section will help you learn more about the Critical Path Method and our platform.</p>
+            </section>
+            <section className='flex w-full flex-col justify-start items-center gap-2'>
+                <FAQItem
+                    question="What is CPM?"
+                    answer="The Critical Path Method (CPM) is a project management tool that helps in planning and scheduling tasks. It involves identifying the longest sequence of tasks in a project, which is the sequence that has the greatest impact on the overall project duration."
+                    expanded={expanded[0]}
+                    onToggle={() => handleToggle(0)}
+                />
+                <FAQItem
+                    question="What is CPM purpose?"
+                    answer="CPM allows determining the minimum time required to complete a project and identifying critical tasks that cannot be delayed without extending the total project duration."
+                    expanded={expanded[1]}
+                    onToggle={() => handleToggle(1)}
+                />
+                <FAQItem
+                    question="How does the CPM help?"
+                    answer="This method is particularly useful in managing construction projects, engineering projects, and programming due to its ability to effectively analyze task dependencies, optimize project schedules, and mitigate risks."
+                    expanded={expanded[2]}
+                    onToggle={() => handleToggle(2)}
+                />
+            </section>
+            <section className='flex flex-col justify-center items-center md:gap-6 gap-4'>
+                <p className='font-light md:text-base text-sm'>Got any more questions?</p>
+                <a href="https://en.wikipedia.org/wiki/Critical_path_method" target='_blank'><Button buttonType={1} title="Open Wikipedia" buttonText={"Read More"}/></a>
             </section>
         </section>
     )
