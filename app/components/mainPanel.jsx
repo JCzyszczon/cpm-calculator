@@ -7,6 +7,10 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 import Error from './errorComponent';
 import AnimatedDiv from "./animatedDiv";
 import { Link as ScrollLink } from 'react-scroll';
+import DiagramImage from '../img/481821.png';
+import DiagramImageDark from '../img/481822.png';
+import Image from "next/image";
+import { useTheme } from 'next-themes';
 
 export default function MainPanel() {
 
@@ -14,8 +18,18 @@ export default function MainPanel() {
     const [number, setNumber] = useState('');
     const [error, setError] = useState('');
     const [isMobile, setIsMobile] = useState(false);
-    const backgroundColors = ['themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT'];
-    const delays = [1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35];
+    const backgroundColors = ['themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT', 'themeColorY', 'themeColorP', 'themeColorT', 'themeColorY'];
+    const delays = [1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55];
+    const { theme, setTheme } = useTheme();
+    const [isDark, setIsDark] = useState(false);
+
+    useEffect(() => {
+      if(theme === 'dark') {
+        setIsDark(true);
+      } else {
+        setIsDark(false);
+      }
+    }, [theme])
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -71,7 +85,7 @@ export default function MainPanel() {
 
     return (
         <>
-            <section className="w-full flex justify-center items-center">
+            <section className="w-full flex justify-center items-center overflow-hidden relative">
               <section className="md:w-1/2 w-full min-h-screen flex justify-center items-center lg:py-[10%] py-[20%] relative">
                   <section className="relative w-[80%] navbar2 overflow-hidden h-full dark:bg-modalColorD duration-300 bg-modalColorL border dark:border-borderColorD border-borderColorL rounded-md flex flex-col md:gap-8 gap-6 justify-center items-center md:px-10 px-[6%] py-14">
                       <section className='w-full h-auto flex flex-col justify-center items-center md:gap-3 gap-2'>
@@ -97,20 +111,29 @@ export default function MainPanel() {
                       <section className="w-full flex flex-col gap-6 justify-center items-center md:mt-0 mt-2">
                           <Button type="submit" form="numberForm" buttonType={1} buttonText="Generate" title="Open Modal"/>
                           <div className="w-full max-w-[140px] h-[1px] dark:bg-borderColorD bg-borderColorL relative"></div>
-                          <ScrollLink to='learnMore' smooth={true} duration={400} offset={-40}><button className="font-extrabold flex justify-center items-center gap-2 group md:text-base text-sm tracking-widest"><span className="relative">Learn more<span className="group-hover:w-full w-0 absolute left-0 bottom-0 h-[2px] gradient2 duration-300"></span></span><span className="group-hover:rotate-90 duration-300"><FaArrowRightLong/></span></button></ScrollLink>
+                          <ScrollLink to='learnMore' smooth={true} duration={400} offset={-60}><button className="font-extrabold flex justify-center items-center gap-2 group md:text-base text-sm tracking-widest"><span className="relative">Learn more<span className="group-hover:w-full w-0 absolute left-0 bottom-0 h-[2px] gradient2 duration-300"></span></span><span className="group-hover:rotate-90 duration-300"><FaArrowRightLong/></span></button></ScrollLink>
                       </section>
                       {!isMobile && 
                         <span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>
                       }
                   </section>
               </section>
-              {!isMobile &&
-                <section className="w-1/2 min-h-screen overflow-hidden flex flex-col justify-between items-start">
+              {!isMobile ? (
+                <section className="w-1/2 h-screen gap-2 overflow-hidden flex flex-col justify-between items-start relative">
                 {backgroundColors.map((color, index) => (
                     <AnimatedDiv key={index} delay={delays[index]} backgroundColor={color} />
                 ))}
+                  <motion.span initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.4, type: "tween", delay: 1.75}}  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <Image src={isDark ? DiagramImageDark : DiagramImage} alt="Diagram Image" className="w-[180px] aspect-square"/>
+                  </motion.span>
                 </section>
-              }
+              ) : (
+                <>
+                  <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorT -rotate-45 translate-x-32 translate-y-4'></span>
+                  <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorP -rotate-45 translate-x-32 translate-y-14'></span>
+                  <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorY -rotate-45 translate-x-32 translate-y-24'></span>
+                </>
+              )}
             </section>
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isModalOpen &&   

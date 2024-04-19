@@ -390,3 +390,12 @@ body {
     font-size: 0.875rem;
   }
 }
+
+@keyframes imgAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

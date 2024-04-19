@@ -2,7 +2,7 @@ import { MdOutlineQuestionMark } from 'react-icons/md';
 import { FaInfo } from 'react-icons/fa6';
 import { IoIosArrowUp } from 'react-icons/io';
 import { BsPlus } from 'react-icons/bs';
-import { HiMiniMinus } from "react-icons/hi2";
+import { HiMiniMinus, HiPlus } from "react-icons/hi2";
 
 const ButtonCircle = ({ buttonType, size, ...props }) => {
 
@@ -16,7 +16,7 @@ const ButtonCircle = ({ buttonType, size, ...props }) => {
             ) : buttonType == 3 ? (
                 <FaInfo className={`relative ${size == 1 ? 'text-xl' : 'text-base'} text-[#1e1e1f]`}/>
             ) : buttonType == 4 ? (
-                <BsPlus className={`relative ${size == 1 ? 'text-xl' : 'text-base'} text-[#1e1e1f]`}/>
+                <HiPlus className={`relative ${size == 1 ? 'text-xl' : 'text-base'} text-[#1e1e1f]`}/>
             ) : buttonType == 5 ? (
                 <HiMiniMinus className={`relative ${size == 1 ? 'text-xl' : 'text-base'} text-[#1e1e1f]`}/>
             ) : (
