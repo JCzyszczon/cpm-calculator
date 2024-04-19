@@ -243,7 +243,7 @@ const TableComponent = ({ closeRequest, howMany }) => {
     <>
       <section className='w-full h-full md:px-12 sm:px-2 px-1 md:py-14 py-10 gap-11 flex flex-col justify-start items-center relative'>
         <span className='fixed lg:right-10 right-4 top-4 z-[1002]'>
-          <ButtonCircle buttonType={1} title="Open Tooltip" onClick={clickButton}/>
+          <ButtonCircle buttonType={1} size={1} title="Open Tooltip" onClick={clickButton}/>
         </span>
         <section className='w-full h-auto flex flex-col justify-center items-center md:gap-3 gap-2'>
           <h2 className='responsive_text font-extrabold tracking-tighter text-center'>Project Information</h2>
