@@ -10,7 +10,7 @@ const FAQItem = ({ question, answer, expanded, onToggle }) => {
                     <h3 className='md:text-xl text-base font-bold'>{question}</h3>
                     {expanded && <motion.span initial={{width: 0}} animate={{width: '100%'}} transition={{duration: 0.4, type: "tween"}} className='w-full h-[2px] gradient2'></motion.span>}
                 </div>
-                <ButtonCircle buttonType={expanded ? 5 : 4} size={2}/>
+                <ButtonCircle title={expanded ? "Close Element" : "Open Element"} buttonType={expanded ? 5 : 4} size={2}/>
             </section>
             <AnimatePresence initial={true} mode="wait" onExitComplete={() => null}>
             {expanded && <motion.p initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{duration: 0.4, type: "tween"}} className='md:text-base text-sm py-2'>{answer}</motion.p>}

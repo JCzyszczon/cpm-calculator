@@ -111,7 +111,7 @@ export default function MainPanel() {
                       <section className="w-full flex flex-col gap-6 justify-center items-center md:mt-0 mt-2">
                           <Button type="submit" form="numberForm" buttonType={1} buttonText="Generate" title="Open Modal"/>
                           <div className="w-full max-w-[140px] h-[1px] dark:bg-borderColorD bg-borderColorL relative"></div>
-                          <ScrollLink to='learnMore' smooth={true} duration={400} offset={-60}><button className="font-extrabold flex justify-center items-center gap-2 group md:text-base text-sm tracking-widest"><span className="relative">Learn more<span className="group-hover:w-full w-0 absolute left-0 bottom-0 h-[2px] gradient2 duration-300"></span></span><span className="group-hover:rotate-90 duration-300"><FaArrowRightLong/></span></button></ScrollLink>
+                          <ScrollLink to='learnMore' href="" smooth={true} duration={400} offset={-60}><button className="font-extrabold flex justify-center items-center gap-2 group md:text-base text-sm tracking-widest"><span className="relative">Learn more<span className="group-hover:w-full w-0 absolute left-0 bottom-0 h-[2px] gradient2 duration-300"></span></span><span className="group-hover:rotate-90 duration-300"><FaArrowRightLong/></span></button></ScrollLink>
                       </section>
                       {!isMobile && 
                         <span className='dark:md:w-48 md:w-48 w-48 dark:md:h-48 md:h-48 h-48 gradient2 rounded-full blur-[160px] dark:blur-[160px] absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2'></span>
