@@ -3,10 +3,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import {IoMdClose} from 'react-icons/io';
 import { motion } from "framer-motion";
 
-function OverviewModal({ closeModal, calculatedData, criticalPath}) {
+function OverviewModal({ closeModal, calculatedData, criticalPath }) {
     
     const modalRef = useRef(null);
-    const [isMobile, setIsMobile] = useState(false);
 
     const handleOutsideClick = (event) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {

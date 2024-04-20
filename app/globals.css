@@ -14,6 +14,8 @@
   --themeColorP: #A374FF;
   --navbarColor:  #fafaf699;
   --navbarColor2: #e9e9e599;
+  --modalColor: #e9e9e5;
+  --borderColor: #b5bbc4,
 }
 
 [class='dark'] {
@@ -25,6 +27,8 @@
   --themeColorP: #A374FF;
   --navbarColor: #1d1d1fcc;
   --navbarColor2: #1d1d1fcc;
+  --modalColor: #2e2e2f;
+  --borderColor: #f0f,
 }
 
 /* custom scrollbar */
@@ -398,4 +402,60 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+._34SS0 {
+  background-color: var(--backgroundColor) !important;
+}
+
+._34SS0:nth-of-type(even) {
+  background-color: var(--modalColor) !important;
+}
+
+._2dZTy {
+  fill: var(--backgroundColor) !important;
+}
+
+._2dZTy:nth-child(even) {
+  fill: var(--modalColor) !important;
+}
+
+._3T42e {
+  background: var(--backgroundColor) !important;
+}
+
+._3rUKi {
+  stroke: #b5bbc4 !important;
+}
+
+._RuwuK {
+  stroke: #b5bbc4 !important;
+}
+
+._1rLuZ {
+  stroke: #b5bbc4 !important;
+}
+
+._35nLX {
+  fill: var(--backgroundColor) !important;
+  stroke: #b5bbc4 !important;
+}
+
+._9w8d5 {
+  fill: #b5bbc4 !important;
+}
+
+._2q1Kt {
+  fill: #b5bbc4 !important;
+}
+
+._3_ygE {
+  border-bottom: #b5bbc4 1px solid !important;
+  border-top: #b5bbc4 1px solid !important;
+  border-left: #b5bbc4 1px solid !important;
+}
+
+._3ZbQT {
+  border-bottom: #b5bbc4 1px solid !important;
+  border-left: #b5bbc4 1px solid !important;
 }

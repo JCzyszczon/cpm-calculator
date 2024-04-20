@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from 'react-icons/io'
 import ButtonCircle from "./buttonCircle";
 import OverviewModal from "./overviewModal";
+import GanttModal from "./ganttModal";
 
 function calculateCPM(data) {
 
@@ -92,6 +93,9 @@ export default function DiagramPanel({ diagramData }) {
     const calculatedData = calculateCPM(diagramData);
     const criticalPath = calculateCriticalPath(calculatedData);
 
+    console.log(calculatedData);
+    console.log(criticalPath);
+
     useEffect(() => {
         function handleResize() {
           if (window.innerWidth < 768) {
@@ -156,6 +160,11 @@ export default function DiagramPanel({ diagramData }) {
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isOverviewOpen &&
                 <OverviewModal closeModal={() => setIsOverviewOpen(false)} calculatedData={calculatedData} criticalPath={criticalPath}/>
+            }
+            </AnimatePresence>
+            <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+            {isGanttOpen &&
+                <GanttModal closeModal={() => setIsGanttOpen(false)} calculatedData={calculatedData} criticalPath={criticalPath}/>
             }
             </AnimatePresence>
         </section>
