@@ -62,6 +62,48 @@ function calculateCPM(data) {
         item.Float = item.LF - item.EF;
     });
 
+    for (let i = data.length - 1; i >= 0; i--) {
+        const currentActivity = data[i];
+        const dependencyLSValues = {};
+        const criticalDependencies = [];
+
+        const isDependencyForAnyActivity = data.some(activity => activity.dependencies.includes(currentActivity.activity));
+
+        if (!isDependencyForAnyActivity) {
+            if (currentActivity.dependencies.length > 0 && currentActivity.Float === 0) {
+                currentActivity.dependencies.forEach(dependency => {
+                    const dependencyActivity = data.find(act => act.activity === dependency);
+                    if(dependencyActivity && dependencyActivity.Float == 0) {
+                        dependencyLSValues[dependency] = dependencyActivity.LS;
+                        criticalDependencies.push(dependency);
+                    }
+                });
+            }
+    
+            if (Object.keys(dependencyLSValues).length > 0) {
+                const maxLSDependency = Object.keys(dependencyLSValues).reduce((a, b) => dependencyLSValues[a] > dependencyLSValues[b] ? a : b);
+                currentActivity.criticalDependencies = criticalDependencies.filter(dependency => dependency === maxLSDependency);
+            }
+        } else {
+            const isCriticalDependency = data.some(activity => activity.criticalDependencies && activity.criticalDependencies.includes(currentActivity.activity));
+
+            if (isCriticalDependency && currentActivity.dependencies.length > 0 && currentActivity.Float === 0) {
+                currentActivity.dependencies.forEach(dependency => {
+                    const dependencyActivity = data.find(act => act.activity === dependency);
+                    if(dependencyActivity && dependencyActivity.Float == 0) {
+                        dependencyLSValues[dependency] = dependencyActivity.LS;
+                        criticalDependencies.push(dependency);
+                    }
+                });
+            }
+    
+            if (Object.keys(dependencyLSValues).length > 0) {
+                const maxLSDependency = Object.keys(dependencyLSValues).reduce((a, b) => dependencyLSValues[a] > dependencyLSValues[b] ? a : b);
+                currentActivity.criticalDependencies = criticalDependencies.filter(dependency => dependency === maxLSDependency);
+            }
+        }
+    }
+
     return data;
 }
 
@@ -71,9 +113,22 @@ function calculateCriticalPath(data) {
     let totalTime = 0;
 
     data.forEach(item => {
-        if (item.Float === 0) {
-            criticalPath.push(item.activity);
-            totalTime += item.duration;
+        if (item.criticalDependencies && item.criticalDependencies.length > 0) {
+            item.criticalDependencies.forEach(dependency => {
+                if (!criticalPath.includes(dependency)) {
+                    criticalPath.push(dependency);
+                }
+                if (!criticalPath.includes(item.activity)) {
+                    criticalPath.push(item.activity);
+                }
+            });
+        }
+    });
+
+    criticalPath.forEach(activity => {
+        const activityData = data.find(item => item.activity === activity);
+        if (activityData) {
+            totalTime += activityData.duration;
         }
     });
 

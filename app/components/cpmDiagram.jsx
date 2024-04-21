@@ -99,14 +99,12 @@ function CpmDiagram({ calculatedData, criticalPath }) {
         { from: criticalPathActivities[criticalPathActivities.length - 1], to: 'end', color: '#ffd074', width: 2 },
     ];
 
-    const criticalPathEdges = calculatedData.reduce((acc, item) => {
-        const isCritical = criticalPathActivities.includes(item.activity);
-        const dependenciesOnCriticalPath = item.dependencies.filter(dep => criticalPathActivities.includes(dep));
-        
-        if (isCritical) {
+    const criticalDependenciesEdges = calculatedData.reduce((acc, item) => {
+        const criticalDependencies = item.criticalDependencies;
+        if (criticalDependencies && criticalDependencies.length > 0) {
             return [
                 ...acc,
-                ...dependenciesOnCriticalPath.map(dep => ({
+                ...criticalDependencies.map(dep => ({
                     from: dep,
                     to: item.activity,
                     color: '#ffd074',
@@ -127,7 +125,7 @@ function CpmDiagram({ calculatedData, criticalPath }) {
             ];
         }, []),
         ...endEdges,
-        ...criticalPathEdges,
+        ...criticalDependenciesEdges,
         ...additionalHighlightedEdges,
     ];
     
