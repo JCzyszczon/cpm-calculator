@@ -1,6 +1,6 @@
 <div align="center">
 
-![Banner CPM Project](/app/img/screens/cpm-banner-3.png)
+![Banner CPM Project](/app/img/screens/cpm-banner-4.png)
 
 # CPM Calculator Project
 
