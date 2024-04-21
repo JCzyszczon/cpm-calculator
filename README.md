@@ -1,6 +1,145 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+![Banner CPM Project](/app/img/screens/w-logo-transparent.png)
+
+# CPM Calculator Project
+
+[Live Page][live-page] . [Fallback Page][fallback-page]
+
+</div>
+
+<details>
+<summary>Table of contents</summary>
+
+-   [Overview](#overview)
+    -   [Description](#the-challenge)
+    -   [Landing Page](#landing-page)
+    -   [Table Modal](#table-modal)
+    -   [Diagram Panel](#diagram-panel)
+    -   [Gantt Chart](#gantt-chart)
+    -   [404 Page](#404-page)
+    -   [Dark Mode](#dark-mode)
+    -   [Links](#links)
+-   [My process](#my-process)
+    -   [Built with](#built-with)
+    -   [Getting Started](#getting-started)
+-   [Author](#author)
+
+</details>
+
+## Overview
+
+### Description
+
+CPM Calculator Project is a web application project built using Next.js and Tailwindcss for classes at AGH in Kraków. User can choose how many activities the diagram should consist of and, after completing the basic information, they can go to the subpage where the diagram will be displayed along with the calculated data and a Gantt chart.
+
+### Landing Page
+
+The homepage displays an input where user can provide number of activities.
+
+Below is a section explaining what CPM is and its benefits.
+
+<table>
+    <tr>
+        <td>
+            <img src="./app/img/screens/landing-page-desktop.png" alt="Desktop solution" width="100%" title="Desktop solution"/>
+        </td>
+        <td>
+            <img src="./app/img/screens/landing-page-mobile.png" alt="Mobile solution" title="Mobile solution" width="100%" />
+        </td>
+    </tr>
+</table>
+
+### Table Modal
+
+After opening modal user can provide sets of data to-be calculated.
+
+<table>
+    <tr>
+        <td>
+            <img src="./app/img/screens/table-modal-desktop.png" alt="Desktop solution" width="100%" title="Desktop solution"/>
+        </td>
+        <td>
+            <img src="./app/img/screens/table-modal-mobile.png" alt="Mobile solution" title="Mobile solution" width="100%" />
+        </td>
+    </tr>
+</table>
+
+### Diagram Panel
+
+If the data is completed correctly, the user will be redirected to a subpage where a diagram with the calculated information will be displayed.
+
+<table>
+    <tr>
+        <td>
+            <img src="./app/img/screens/diagram-panel-desktop.png" alt="Desktop solution" width="100%" title="Desktop solution"/>
+        </td>
+        <td>
+            <img src="./app/img/screens/diagram-panel-mobile.png" alt="Mobile solution" title="Mobile solution" width="100%" />
+        </td>
+    </tr>
+</table>
+
+### Gantt Chart
+
+After clicking the button, a modal will open, inside which the created Gantt chart will be displayed.
+
+<table>
+    <tr>
+        <td>
+            <img src="./app/img/screens/gantt-chart-desktop.png" alt="Desktop solution" width="100%" title="Desktop solution"/>
+        </td>
+        <td>
+            <img src="./app/img/screens/gantt-chart-mobile.png" alt="Mobile solution" title="Mobile solution" width="100%" />
+        </td>
+    </tr>
+</table>
+
+### 404 Page
+
+If user enter incorrect data, they will be redirected to the 404 Page.
+
+<table>
+    <tr>
+        <td>
+            <img src="./app/img/screens/404-page-desktop.png" alt="Desktop solution" width="100%" title="Desktop solution"/>
+        </td>
+        <td>
+            <img src="./app/img/screens/404-page-mobile.png" alt="Mobile solution" title="Mobile solution" width="100%" />
+        </td>
+    </tr>
+</table>
+
+### Dark Mode
+
+This is what the Dark Mode version looks like.
+
+<table>
+    <tr>
+        <td>
+            <img src="./app/img/screens/dark-mode-desktop.png" alt="Desktop solution" width="100%" title="Desktop solution"/>
+        </td>
+        <td>
+            <img src="./app/img/screens/dark-mode-mobile.png" alt="Mobile solution" title="Mobile solution" width="100%" />
+        </td>
+    </tr>
+</table>
+
+### Links
+
+-   [Live Page][live-page]
+-   [Fallback Page][fallback-page]
+
+## My Process
+
+### Built with
+
+-   Next.js
+-   TailwindCSS
+-   Framer Motion
+-   JavaScript
+
+### Getting Started
 
 First, run the development server:
 
@@ -10,8 +149,6 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -20,17 +157,12 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Author
 
-To learn more about Next.js, take a look at the following resources:
+-   JCzyszczon - [Github](https://github.com/JCzyszczon)
+-   JCzyszczon - [Linkedin](https://www.linkedin.com/in/jakub-czyszczoń-5265b02a6/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[live-page]: https://cpm-calculator-omega.vercel.app
+[fallback-page]: https://cpm-calculator-jczyszczons-projects.vercel.app
