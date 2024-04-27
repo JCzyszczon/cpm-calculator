@@ -118,6 +118,7 @@ export default function MainPanel() {
                       }
                   </section>
               </section>
+              {/*<>
               {!isMobile ? (
                 <section className="w-1/2 h-screen gap-2 overflow-hidden flex flex-col justify-between items-start relative">
                 {backgroundColors.map((color, index) => (
@@ -134,6 +135,7 @@ export default function MainPanel() {
                   <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorY -rotate-45 translate-x-32 translate-y-24'></span>
                 </>
               )}
+            </>*/}
             </section>
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isModalOpen &&   
