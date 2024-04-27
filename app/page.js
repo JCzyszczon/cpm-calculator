@@ -6,9 +6,8 @@ export default function Home() {
   return (
     <main className="w-full flex flex-col justify-center items-center min-h-screen">
       {/*<MainPanel/>*/}
-      <h1>SIEMA</h1>
-      {/*<LearnMore/>
-      <Footer/>*/}
+      {/*<LearnMore/>*/}
+      <Footer/>
     </main>
   );
 }
