@@ -165,4 +165,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 [live-page]: https://cpm-calculator-omega.vercel.app
-[fallback-page]: https://cpm-calculator-jczyszczons-projects.vercel.app
+[fallback-page]: https://cpm-calculator-git-main-jczyszczons-projects.vercel.app
