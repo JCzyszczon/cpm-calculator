@@ -118,24 +118,14 @@ export default function MainPanel() {
                       }
                   </section>
               </section>
-              {/*<>
-              {!isMobile ? (
-                <section className="w-1/2 h-screen gap-2 overflow-hidden flex flex-col justify-between items-start relative">
-                {backgroundColors.map((color, index) => (
-                    <AnimatedDiv key={index} delay={delays[index]} backgroundColor={color} />
-                ))}
-                  <motion.span initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.4, type: "tween", delay: 1.75}}  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <Image src={isDark ? DiagramImageDark : DiagramImage} alt="Diagram Image" className="w-[180px] aspect-square"/>
-                  </motion.span>
-                </section>
-              ) : (
-                <>
-                  <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorT -rotate-45 translate-x-32 translate-y-4'></span>
-                  <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorP -rotate-45 translate-x-32 translate-y-14'></span>
-                  <span className='absolute right-0 bottom-0 w-full h-[20px] bg-themeColorY -rotate-45 translate-x-32 translate-y-24'></span>
-                </>
-              )}
-            </>*/}
+              <section className="w-1/2 h-screen gap-2 overflow-hidden md:flex hidden flex-col justify-between items-start relative">
+              {backgroundColors.map((color, index) => (
+                  <AnimatedDiv key={index} delay={delays[index]} backgroundColor={color} />
+              ))}
+                <motion.span initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.4, type: "tween", delay: 1.75}}  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <Image src={isDark ? DiagramImageDark : DiagramImage} alt="Diagram Image" className="w-[180px] aspect-square"/>
+                </motion.span>
+              </section>
             </section>
             <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
             {isModalOpen &&   
