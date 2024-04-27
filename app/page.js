@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <main className="w-full flex flex-col justify-center items-center min-h-screen">
       <MainPanel/>
-      <LearnMore/>
-      <Footer/>
+      {/*<LearnMore/>
+      <Footer/>*/}
     </main>
   );
 }
