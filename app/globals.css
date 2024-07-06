@@ -11,24 +11,24 @@
   --buttonColor: #1d1d1f00;
   --themeColorY: #ffd074;
   --themeColorT: #17f1d1;
-  --themeColorP: #A374FF;
-  --navbarColor:  #fafaf699;
+  --themeColorP: #a374ff;
+  --navbarColor: #fafaf699;
   --navbarColor2: #e9e9e599;
   --modalColor: #e9e9e5;
-  --borderColor: #b5bbc4,
+  --borderColor: #b5bbc4;
 }
 
-[class='dark'] {
+[class="dark"] {
   --backgroundColor: #1d1d1f;
   --buttonColor: #1d1d1f00;
   --textColor: #fafaf6;
   --themeColorY: #ffd074;
   --themeColorT: #17f1d1;
-  --themeColorP: #A374FF;
+  --themeColorP: #a374ff;
   --navbarColor: #1d1d1fcc;
   --navbarColor2: #1d1d1fcc;
   --modalColor: #2e2e2f;
-  --borderColor: #f0f,
+  --borderColor: #f0f;
 }
 
 /* custom scrollbar */
@@ -64,9 +64,9 @@
 }
 
 body {
-    color: var(--textColor);
-    background-color: var(--backgroundColor);
-    transition-duration: 300ms;
+  color: var(--textColor);
+  background-color: var(--backgroundColor);
+  transition-duration: 300ms;
 }
 
 @layer utilities {
@@ -103,8 +103,12 @@ body {
   height: 250px;
   border-radius: 100%;
   border-radius: 50%;
-  background: rgb(163,116,255);
-  background: linear-gradient(24deg, rgba(163,116,255,1) 0%, rgba(255,208,116,1) 100%);
+  background: rgb(163, 116, 255);
+  background: linear-gradient(
+    24deg,
+    rgba(163, 116, 255, 1) 0%,
+    rgba(255, 208, 116, 1) 100%
+  );
   animation: rotate 20s infinite;
   position: fixed;
   left: 50%;
@@ -113,19 +117,28 @@ body {
 }
 
 .gradient {
-  background: rgb(163,116,255);
-  background: linear-gradient(24deg, rgba(163,116,255,1) 0%, rgba(255,208,116,1) 100%);
+  background: rgb(163, 116, 255);
+  background: linear-gradient(
+    24deg,
+    rgba(163, 116, 255, 1) 0%,
+    rgba(255, 208, 116, 1) 100%
+  );
 }
 
 .gradient2 {
-  background: rgb(23,241,209);
-  background: linear-gradient(24deg, rgba(23,241,209,1) 0%, rgba(163,116,255,1) 50%, rgba(255,208,116,1) 100%);
+  background: rgb(23, 241, 209);
+  background: linear-gradient(
+    24deg,
+    rgba(23, 241, 209, 1) 0%,
+    rgba(163, 116, 255, 1) 50%,
+    rgba(255, 208, 116, 1) 100%
+  );
 }
 
 @keyframes rotate {
   from {
     rotate: 0deg;
-  }  
+  }
   to {
     rotate: 360deg;
   }
@@ -171,7 +184,9 @@ body {
   background-color: var(--themeColorY);
 }
 
-.burger:hover .burger__layer-first, .burger:hover .burger__layer-second, .burger:hover .burger__layer-third {
+.burger:hover .burger__layer-first,
+.burger:hover .burger__layer-second,
+.burger:hover .burger__layer-third {
   transition: 0.3s all;
   scale: 6;
 }
@@ -211,7 +226,6 @@ body {
   background-color: var(--themeColorY);
 }
 
-
 /* Button 2nd type */
 
 .btn {
@@ -244,24 +258,30 @@ body {
   opacity: 1;
 }
 
-.btn:hover .btn__bg__layer-first, .btn:hover .btn__bg__layer-second, .btn:hover .btn__bg__layer-third {
+.btn:hover .btn__bg__layer-first,
+.btn:hover .btn__bg__layer-second,
+.btn:hover .btn__bg__layer-third {
   border-radius: 60% 60% 0 0;
   transform: translateY(1rem);
 }
 
 .btn:hover .btn__bg__layer-first {
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 200ms, border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 270ms;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 200ms,
+    border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 270ms;
 }
 
 .btn:hover .btn__bg__layer-second {
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 300ms, border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 470ms;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 300ms,
+    border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 470ms;
 }
 
 .btn:hover .btn__bg__layer-third {
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 380ms, border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 670ms;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 380ms,
+    border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 670ms;
 }
 
-.btn__text-out, .btn__text-in {
+.btn__text-out,
+.btn__text-in {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -367,30 +387,37 @@ body {
   opacity: 1;
 }
 
-.btn2:hover .btn__bg__layer-first, .btn2:hover .btn__bg__layer-second, .btn2:hover .btn__bg__layer-third {
+.btn2:hover .btn__bg__layer-first,
+.btn2:hover .btn__bg__layer-second,
+.btn2:hover .btn__bg__layer-third {
   border-radius: 60% 60% 0 0;
   transform: translateY(1rem);
 }
 
 .btn2:hover .btn__bg__layer-first {
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 200ms, border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 270ms;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 200ms,
+    border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 270ms;
 }
 
 .btn2:hover .btn__bg__layer-second {
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 300ms, border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 470ms;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 300ms,
+    border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 470ms;
 }
 
 .btn2:hover .btn__bg__layer-third {
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 380ms, border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 670ms;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 380ms,
+    border-radius 0.2s cubic-bezier(0.19, 1, 0.22, 1) 670ms;
 }
 
 @media (max-width: 639px) {
-  .btn, .btn2 {
+  .btn,
+  .btn2 {
     width: 100%;
     height: 40px;
   }
 
-  .btn__text-out, .btn__text-in {
+  .btn__text-out,
+  .btn__text-in {
     font-size: 0.875rem;
   }
 }
@@ -458,4 +485,22 @@ body {
 ._3ZbQT {
   border-bottom: #b5bbc4 1px solid !important;
   border-left: #b5bbc4 1px solid !important;
+}
+
+.shadowMain {
+  background: rgb(8, 9, 10);
+  background: linear-gradient(
+    270deg,
+    rgba(8, 9, 10, 0) 25%,
+    var(--backgroundColor) 100%
+  );
+}
+
+.shadowMain2 {
+  background: rgb(8, 9, 10);
+  background: linear-gradient(
+    90deg,
+    rgba(8, 9, 10, 0) 25%,
+    var(--backgroundColor) 100%
+  );
 }
